@@ -2,6 +2,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import fileUpload from "express-fileupload";
+
 import connectDatabase from "./config/MongoDB.js";
 import ImportData from "./DataImport.js";
 import { errorHandler, notFound } from "./Middleware/Errors.js";
@@ -22,7 +23,7 @@ app.use(
     })
 );
 
-// API
+
 app.use("/api/import", ImportData);
 app.use("/api/categories", categoryRouter);
 app.use("/api/products", productRouter);
@@ -32,6 +33,7 @@ app.use("/api/upload", uploadRouter);
 app.get("/api/config/paypal", (req, res) => {
     res.send(process.env.PAYPAL_CLIENT_ID);
 });
+
 
 // ERROR HANDLE
 app.use(notFound);
